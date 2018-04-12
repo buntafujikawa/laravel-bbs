@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class PostsController extends Controller
 {
@@ -25,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        View('bbs.create');
     }
 
     /**
@@ -36,7 +37,20 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 失敗したら元のページに戻される
+        $validateData = $request->validate([
+            'title' => 'required',
+            'content'=>'required',
+            'cat_id' => 'required',
+        ]);
+
+        $post = new Post();
+        $post->title = Input::get('title');
+        $post->content = Input::get('content');
+        $post->category_id = Input::get('category_id');
+        $post->save();
+
+        return redirect()->back()->with('message', '投稿が完了しました。');
     }
 
     /**
@@ -49,39 +63,5 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         return View('bbs.single', ['post' => $post]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Models\Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Post $post)
-    {
-        //
     }
 }

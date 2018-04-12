@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('bbs', 'PostsController');
+Route::resource('comment', 'CommentsController');
