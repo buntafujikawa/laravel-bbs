@@ -8,12 +8,12 @@ class Post extends Model
 {
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany('App\Models\Comment');
     }
 
     public function category()
     {
         // ラベルではないので1つになる
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo('App\Models\Category');
     }
 }
