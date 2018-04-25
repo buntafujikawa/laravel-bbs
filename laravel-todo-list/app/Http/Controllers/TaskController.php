@@ -60,10 +60,10 @@ class TaskController extends Controller
      * @param Request $request
      * @param Task $task
      * @return Response
+     * @throws \Exception
      */
     public function destroy(Request $request, Task $task)
     {
-       // TODO ポリシーの追加をやってないからそれが原因で削除ができないのかもしれない
         // TaskPolicyのdestroyメソッド
         $this->authorize('destroy', $task);
 
