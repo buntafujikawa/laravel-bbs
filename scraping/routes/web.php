@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/scraping', 'ScrapingController@index');
+Route::get('/ted', 'ScrapingController@fetchTalkList');
+
+// TODO get parameterを渡して詳細のページに遷移させる

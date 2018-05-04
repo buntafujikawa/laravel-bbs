@@ -25,7 +25,7 @@
                                 <tr>
                                     <td class="table-text"><div>{{ $talk['speaker'] }}</div></td>
                                     <td class="table-text"><div>{{ $talk['title'] }}</div></td>
-                                    <td class="table-text"><div><img src=" {{ $talk['img'] }}"></div></td>
+                                    <td class="table-text"><div><img src="{{ $talk['img'] }}"></div></td>
                                 </tr>
                             @endforeach
                             </tbody>
