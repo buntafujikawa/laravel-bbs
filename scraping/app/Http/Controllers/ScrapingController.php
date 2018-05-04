@@ -9,7 +9,7 @@ class ScrapingController extends Controller
 {
     private $talks = [];
 
-    public function fetchTalkList()
+    public function index()
     {
         $client = new Client();
         $crawler = $client->request('GET', "https://www.ted.com/talks");
@@ -23,15 +23,22 @@ class ScrapingController extends Controller
             $this->talks[] = $val;
         });
 
-        return view('scraping.index', [
+        return view('talks.index', [
             'talks' => $this->talks,
         ]);
     }
 
-    public function fetchTalkDescription()
+    public function show(string $name)
     {
+        // TODO 制御は入れる
 //        $client = new Client();
-//        $crawler = $client->request('GET', "https://www.ted.com/talks/rebecca_kleinberger_our_three_voices");
-        // <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/rebecca_kleinberger_our_three_voices" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
+//        $client->request('GET', "https://www.ted.com/talks/$name");
+//        if ($client->getResponse()->getStatus() != 200) {
+//            // error
+//        }
+
+        return view('talks.show', [
+            'url' => "https://embed.ted.com/talks/$name",
+        ]);
     }
 }
