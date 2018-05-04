@@ -23,7 +23,7 @@
                                 </tr>
                             @foreach ($talks as $talk)
                                 <tr>
-                                    <td class="table-text"><div>{{ $talk['speaker'] }}</div></td>
+                                    <td class="table-text"><div><a href="/ted{{ $talk['url'] }}">{{ $talk['speaker'] }}</a></div></td>
                                     <td class="table-text"><div>{{ $talk['title'] }}</div></td>
                                     <td class="table-text"><div><img src="{{ $talk['img'] }}"></div></td>
                                 </tr>

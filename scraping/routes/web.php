@@ -15,5 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ted', 'ScrapingController@index');
-Route::get('/ted/{name}', 'ScrapingController@show');
+Route::get('/ted/talks', 'ScrapingController@index');
+Route::get('/ted/talks/{name}', 'ScrapingController@show');

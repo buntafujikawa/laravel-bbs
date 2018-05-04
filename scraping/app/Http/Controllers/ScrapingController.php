@@ -30,12 +30,12 @@ class ScrapingController extends Controller
 
     public function show(string $name)
     {
-        // TODO 制御は入れる
-//        $client = new Client();
-//        $client->request('GET', "https://www.ted.com/talks/$name");
-//        if ($client->getResponse()->getStatus() != 200) {
-//            // error
-//        }
+        $client = new Client();
+        $client->request('GET', "https://www.ted.com/talks/$name");
+
+        if ($client->getResponse()->getStatus() != 200) {
+            return view('common.errors');
+        }
 
         return view('talks.show', [
             'url' => "https://embed.ted.com/talks/$name",
