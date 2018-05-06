@@ -20,6 +20,9 @@
     <div class="container">
         <router-view></router-view>
     </div>
+    <div>
+        <h1>hoge</h1>
+    </div>
 </div>
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
