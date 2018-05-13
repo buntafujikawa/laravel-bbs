@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/app.css">
 
     <script>
+        window.Laravel = {};
+        window.Laravel.csrfToken = "{{ csrf_token() }}";
     </script>
 </head>
 <body>
@@ -17,6 +19,5 @@
     <example></example>
 </div>
 </body>
-
 <script src="js/app.js"></script>
 </html>
