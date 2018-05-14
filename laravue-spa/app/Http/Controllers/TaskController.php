@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 
-// TODO エラー処理、バリデーション、ポリシーの設定
 class TaskController extends Controller
 {
     /**
@@ -18,28 +17,34 @@ class TaskController extends Controller
         return Task::take(5)->get()->keyBy('id');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        // saveがnullになっている
-        return Task::create($request->only('name'))->save();
+        return Task::create($request->only('name'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
-     * @return mixed
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
     {
+        // fatal errorになってる
         return Task::find($id)->fill($request->only('is_done'))->save()->fresh();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return int
      */
     public function destroy(int $id)
