@@ -25,7 +25,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return Task::create($request->only('name'));
+        return Task::create($request->only('name'))->fresh();
     }
 
     /**
@@ -37,8 +37,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        // fatal errorになってる
-        return Task::find($id)->fill($request->only('is_done'))->save()->fresh();
+        $task = Task::find($id)->fill($request->only('is_done'));
+        $task->save();
+        return $task->fresh();
     }
 
     /**
