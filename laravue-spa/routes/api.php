@@ -14,5 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => 'api'], function () {
-    Route::resource('tasks',  'TaskController');
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+
+    // 認証済みユーザーのみ
+    Route::grout(['middleware' => 'jwt.auth'], function () {
+        Route::resource('tasks', 'TaskController');
+    });
 });
