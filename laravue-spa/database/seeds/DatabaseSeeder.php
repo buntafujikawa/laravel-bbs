@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Task::class, 50)->create();
+        factory(App\User::class, 50)->create()->each(function ($user) {
+            $user->tasks()->save(
+                factory(App\Task::class)->make()
+            );
+        });
     }
 }

@@ -17,7 +17,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('authenticate', 'AuthenticateController@authenticate');
 
     // 認証済みユーザーのみ
-    Route::grout(['middleware' => 'jwt.auth'], function () {
+    Route::group(['middleware' => 'jwt.auth'], function () {
         Route::resource('tasks', 'TaskController');
     });
 });
