@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import router from './router'
 import http from "./services/http.js";
-import userStore from './stores/userStore'
+import userStore from './stores/userStore.js'
 
 require('./bootstrap');
 
