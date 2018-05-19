@@ -20,5 +20,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::resource('tasks', 'TaskController');
         Route::get('me',  'AuthenticateController@getCurrentUser');
+
+        Route::get('logout', 'AuthenticateController@logout')->middleware('jwt.refresh');
     });
 });

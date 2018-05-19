@@ -44,6 +44,8 @@ export default {
       // ...get the token from the header or response data if exists, and save it.
       const token = response.headers['Authorization'] || response.data['token']
       if (token) {
+        // TODO クッキーの方がセキュリティ上良いらしいので扱いを変更する
+        // https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage
         localStorage.setItem('jwt-token', token)
       }
 

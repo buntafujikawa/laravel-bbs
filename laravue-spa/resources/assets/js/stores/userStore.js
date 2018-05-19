@@ -19,6 +19,15 @@ export default {
     })
   },
 
+  logout (successCb = null, errorCb = null) {
+    http.get('logout', () => {
+      // 削除すればログアウトできる
+      localStorage.removeItem('jwt-token')
+      this.state.authenticated = false
+      successCb()
+    }, errorCb)
+  },
+
   setCurrentUser() {
     http.get('me', res => {
       this.state.user = res.data.user
