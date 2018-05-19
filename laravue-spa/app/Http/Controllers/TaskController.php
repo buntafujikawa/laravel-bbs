@@ -14,7 +14,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::take(5)->get()->keyBy('id');
+        $user = \JWTAuth::parseToken()->authenticate();
+        return $user->tasks()->get()->keyBy('id');
     }
 
     /**
@@ -25,7 +26,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return Task::create($request->only('name'))->fresh();
+        $user = \JWTAuth::parseToken()->authenticate();
+        return $user->tasks()->create($request->only('name'))->fresh();
     }
 
     /**

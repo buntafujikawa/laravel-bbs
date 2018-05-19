@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\JWTAuth;
+// ここがTymon\JWTAuth\JWTAuthになっててできてなかった
+use JWTAuth;
 
 class AuthenticateController extends Controller
 {
@@ -19,7 +20,7 @@ class AuthenticateController extends Controller
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'invalid_credentials'], 401);
+            return response()->json(['error' => 'invalid_credentials'], 500);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -29,8 +30,7 @@ class AuthenticateController extends Controller
 
     public function getCurrentUser()
     {
-        $user = JWTAuth::parseToke()->authenticate();
+        $user = JWTAuth::parseToken()->authenticate();
         return response()->json(compact('user'));
     }
 }
-
