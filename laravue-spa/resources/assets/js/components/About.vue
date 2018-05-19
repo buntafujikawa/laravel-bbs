@@ -1,5 +1,5 @@
 <template>
-    <div>
-        This page describes who we are.
-    </div>
+  <div>
+    This page describes who we are.
+  </div>
 </template>
