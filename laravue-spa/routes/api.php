@@ -19,5 +19,6 @@ Route::group(['middleware' => 'api'], function () {
     // 認証済みユーザーのみ
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::resource('tasks', 'TaskController');
+        Route::get('me',  'AuthenticateController@getCurrentUser');
     });
 });
