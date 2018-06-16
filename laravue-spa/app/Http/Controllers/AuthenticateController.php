@@ -10,6 +10,10 @@ use JWTAuth;
 
 class AuthenticateController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -28,6 +32,9 @@ class AuthenticateController extends Controller
         return response()->json(compact('user', 'token'));
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getCurrentUser()
     {
         $user = JWTAuth::parseToken()->authenticate();
