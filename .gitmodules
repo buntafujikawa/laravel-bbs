@@ -1,0 +1,3 @@
+[submodule "stripe/laradock"]
+	path = stripe/laradock
+	url = https://github.com/Laradock/laradock.git
