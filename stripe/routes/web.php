@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/subscribe', function () {
+    return view('subscribe');
+});
 
 Route::post('charge', 'CheckoutController@charge');
-Route::post('/subscribe_process', 'CheckoutController@subscribe_process');
+Route::post('subscribe_process', 'CheckoutController@subscribe_process');
