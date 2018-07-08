@@ -21,5 +21,6 @@
             data-currency="usd">
     </script>
 </form>
+<a href="/subscribe">subscribe</a>
 </body>
 </html>
