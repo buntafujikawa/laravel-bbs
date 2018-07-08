@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Customer;
@@ -30,5 +31,20 @@ class CheckoutController extends Controller
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
+    }
+
+    public function subscribe_process(Request $request)
+    {
+        try {
+            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+            $user = User::find(1);
+            $user->newSubscription('main', 'bronze')->create($request->stripeToken);
+
+            return 'Subscription successful, you get the course!';
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+
     }
 }
