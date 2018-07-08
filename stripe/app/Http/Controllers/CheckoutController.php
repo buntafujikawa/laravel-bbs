@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
@@ -80,6 +81,38 @@ class CheckoutController extends Controller
             $user->subscription('main')->cancel();
 
             return 'Subscription canceled!';
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function invoices()
+    {
+        try {
+            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+            $user = User::find(1);
+            $invoices = $user->invoices();
+
+            return view('invoices', compact('invoices'));
+
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function invoice($invoice_id)
+    {
+        try {
+            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+            $user = User::find(1);
+
+            return $user->downloadInvoice($invoice_id, [
+                'vendor'  => 'Your Company',
+                'product' => 'Your Product',
+            ]);
+
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
