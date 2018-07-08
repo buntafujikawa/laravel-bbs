@@ -11,7 +11,7 @@
 <form action="/your-server-side-code" method="POST">
     <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_pIaGoPD69OsOWmh1FIE8Hl4J"
+            data-key="{{env('STRIPE_PUB_KEY')}}"
             data-amount="1999"
             data-name="Stripe Demo"
             data-description="Online course about integrating Stripe"
