@@ -43,6 +43,5 @@ class AuthenticateController extends Controller
 
     public function logout()
     {
-
     }
 }
