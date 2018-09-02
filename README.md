@@ -1,0 +1,6 @@
+## install
+
+```
+$ laravel new hoge
+```
+
