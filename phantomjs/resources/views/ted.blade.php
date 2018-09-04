@@ -26,7 +26,7 @@
                         @foreach ($talks as $talk)
                             <tr>
                                 <td class="table-text">
-                                    <div>{{ $talk  }}</div>
+                                    <div>{{ $talk }}</div>
                                 </td>
                             </tr>
                         @endforeach

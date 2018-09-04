@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use JonnyW\PhantomJs\Client;
 use Illuminate\Http\Request;
+use Symfony\Component\DomCrawler\Crawler;
 
 class ScrapingController extends Controller
 {
@@ -16,11 +17,14 @@ class ScrapingController extends Controller
         $response = $client->getMessageFactory()->createResponse();
 
         $client->send($request, $response);
-        if($response->getStatus() === 200) {
-            echo $response->getContent();
-        }
+//        if($response->getStatus() === 200) {
+//            echo $response->getContent();
+//        }
 
-        $talks = ['hoge', 'fuga',];
+        $crawler = new Crawler($response->getContent());
+        $title = $crawler->filter('title')->text();
+
+        $talks = ['hoge', 'fuga', $title];
 
         return view('ted', ['talks' => $talks,]);
     }
